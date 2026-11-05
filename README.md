@@ -2,14 +2,7 @@
 
 > **Chỉ dành cho học tập, phòng lab, CTF hoặc kiểm thử mạng/thiết bị thuộc quyền sở hữu hay được cho phép rõ ràng.** Một số công cụ trong nguồn có thể gây mất kết nối hoặc liên quan kiểm tra mật khẩu, WPS và mô phỏng điểm truy cập giả; không sử dụng trái phép.
 
-## Cấu trúc ZIP (README ở thư mục gốc)
-
-```text
-README.md
-01_TOAN_BO_LENH_GOC.txt
-02_HUONG_DAN_CHI_TIET_TUNG_LENH.md
-```
-
+## Cấu trúc
 | Tệp | Nội dung | Khi nào đọc |
 |---|---|---|
 | `README.md` | Mục tiêu, phạm vi, yêu cầu, mục lục, nguyên tắc an toàn | Đọc đầu tiên |
@@ -46,3 +39,6 @@ README.md
 - [TryHackMe](https://tryhackme.com/) / [Hack The Box](https://www.hackthebox.com/) / [OverTheWire](https://overthewire.org/)
 
 *Dự án dành cho nghiên cứu có trách nhiệm; bản repo này chỉ chứa tài liệu, không chứa công cụ hay dữ liệu mạng thực tế.*
+© Tài liệu tổng hợp phục vụ nghiên cứu có trách nhiệm.
+© QUYET DEV PTIT 
+// Tài liệu này được tổng hợp từ các nguồn và repo github khác.

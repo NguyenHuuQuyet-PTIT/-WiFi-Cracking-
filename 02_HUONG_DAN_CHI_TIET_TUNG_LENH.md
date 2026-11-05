@@ -2,15 +2,6 @@
 
 > **Phạm vi:** Tài liệu tham khảo phục vụ học và kiểm thử WiFi **trên thiết bị/mạng lab thuộc quyền quản lý hoặc được ủy quyền**. Nội dung không phải quy trình áp dụng trên mạng công cộng hay mạng của người khác.
 
-## Cách dùng tài liệu
-
-- Đọc `README.md` tại thư mục gốc để hiểu mục tiêu, cấu trúc và giới hạn dự án.
-- Mọi dòng lệnh bên dưới được sao chép **nguyên ký tự** từ danh sách hợp nhất bản trước. Chú giải và hướng dẫn nằm **ngoài** khối lệnh, không sửa lệnh gốc.
-- Có **37 dòng lệnh** trong **9 nhóm**. Những dòng có cùng thao tác nhưng khác chú thích, ví dụ, tên tệp hoặc tham số đều được giữ.
-- `<BSSID>` và `<CH>` là ký hiệu chỗ trống của nguồn, **không phải chuỗi shell để nhập nguyên xi**. Các địa chỉ MAC và kênh minh họa cũng không đại diện một thiết bị thật.
-- `wlan0`, `wlan0mon`, `capture.cap`, `capture-01.cap`, `capture.pcapng`, `rockyou.txt` là những **tên ví dụ**, không bảo đảm tồn tại trên thiết bị của bạn.
-- Các khối lệnh là ví dụ lịch sử để đọc từng dòng; **không dán chạy liên tục tất cả**. Một số nhóm có khả năng gây gián đoạn WiFi, đọc cảnh báo trước khi sử dụng.
-
 ## Chuẩn bị cho bài lab được phép
 
 Hệ điều hành ví dụ của nguồn là Kali Linux; cần card WiFi/driver phù hợp và công cụ liên quan được cài từ nguồn đáng tin cậy. Trước khi áp dụng bất cứ lệnh nào, xác định phạm vi thử nghiệm, kiểm tra tên giao diện và đường dẫn tệp thực tế. Những thao tác cần quyền quản trị hoặc có ảnh hưởng đến dịch vụ mạng nên thực hiện trên máy lab riêng, không phải máy làm việc chính.
@@ -778,19 +769,7 @@ sudo python3 setup.py install
 
 ---
 
-## Ghi chú về khả năng tương thích
-
-- Không thay lệnh cũ bằng lệnh mới để tránh mất dấu vết nguồn. Đặc biệt, Hashcat `-m 2500`/`.hccapx` đã được thay thế dần bởi mode `22000` trong hệ sinh thái Hashcat; phần này chỉ lưu làm tham khảo lịch sử.
-- `--force` trong ví dụ Hashcat là tham số có sẵn trong nguồn, không phải lời khuyên vượt qua cảnh báo trình điều khiển.
-- Giao diện monitor không nhất thiết mang tên `wlan0mon`. Lệnh thu thập có thể không tạo handshake/PMKID hợp lệ.
-- Những lời quảng cáo “chắc chắn bắt được”, “ẩn danh” hoặc tốc độ kiểm tra mật khẩu cố định của nguồn cũ không được coi là cam kết kỹ thuật.
-
-## Nguồn tham chiếu và cách đối chiếu
-
-Nguồn nội bộ: ZIP gốc `-WiFi-Cracking-master.zip`, bản ZIP được gửi lại `-WiFi-Cracking-master(1).zip`, và danh mục hợp nhất trước đó. Các khối mã ở trên giữ nguyên **37 dòng** theo cùng thứ tự với `01_TOAN_BO_LENH_GOC.txt`.
 
 Tài liệu bên ngoài tham khảo: [Aircrack-ng/airmon-ng](https://www.aircrack-ng.org/doku.php?id=airmon-ng), [Hashcat — thông báo thay thế mode 2500](https://hashcat.net/forum/thread-10253-post-53276.html). Tính tương thích phải đối chiếu với phiên bản công cụ thực tế.
 
-© Tài liệu tổng hợp phục vụ nghiên cứu có trách nhiệm.
-© QUYET DEV PTIT 
-// Tài liệu này được tổng hợp từ các nguồn và repo github khác.
+©CRE -- QUYET DEV PTIT --
