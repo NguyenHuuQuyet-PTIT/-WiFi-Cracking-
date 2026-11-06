@@ -39,6 +39,6 @@
 - [TryHackMe](https://tryhackme.com/) / [Hack The Box](https://www.hackthebox.com/) / [OverTheWire](https://overthewire.org/)
 
 *Dự án dành cho nghiên cứu có trách nhiệm; bản repo này chỉ chứa tài liệu, không chứa công cụ hay dữ liệu mạng thực tế.*
-© Tài liệu tổng hợp phục vụ nghiên cứu có trách nhiệm.
-© QUYET DEV PTIT 
-// Tài liệu này được tổng hợp từ các nguồn và repo github khác.
+- © Tài liệu tổng hợp phục vụ nghiên cứu có trách nhiệm.
+- © QUYET DEV PTIT 
+- @ Tài liệu này được tổng hợp từ các nguồn và repo github khác.
